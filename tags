@@ -60,6 +60,11 @@ BOTTOMLEFT	SDL_Label.h	/^	BOTTOMLEFT,$/;"	e	enum:__anon9
 BOTTOMLEFT	attic/SDL_Label.h	/^	BOTTOMLEFT,$/;"	e	enum:__anon18
 BOTTOMRIGHT	SDL_Label.h	/^	BOTTOMRIGHT$/;"	e	enum:__anon9
 BOTTOMRIGHT	attic/SDL_Label.h	/^	BOTTOMRIGHT$/;"	e	enum:__anon18
+BUTTON_KEYDOWN_SWITCH	SDL_Button.h	34;"	d
+BUTTON_KEYUP_SWITCH	SDL_Button.h	35;"	d
+BUTTON_LEFT_SWITCH	SDL_Button.h	31;"	d
+BUTTON_MIDDLE_SWITCH	SDL_Button.h	32;"	d
+BUTTON_RIGHT_SWITCH	SDL_Button.h	33;"	d
 Background	SDL_ImageGIF.c	/^    unsigned int Background;$/;"	m	struct:__anon6	file:
 Background	SDL_Skin.h	/^    char *Background;$/;"	m	struct:SDL_SkinWindow
 Background	attic/SDL_ImageGIF.c	/^    unsigned int Background;$/;"	m	struct:__anon15	file:
@@ -167,6 +172,7 @@ CursorPosition	SDL_Edit.h	/^    unsigned int CursorPosition;$/;"	m	struct:SDL_Ed
 CursorPosition	SDL_MultiLineEdit.h	/^    int CursorPosition;$/;"	m	struct:SDL_TextCursor
 CursorPosition	attic/SDL_Edit.h	/^    unsigned int CursorPosition;$/;"	m	struct:SDL_Edit
 CursorPosition	attic/SDL_MultiLineEdit.h	/^    int CursorPosition;$/;"	m	struct:SDL_TextCursor
+DISABLE	SDL_Widget.h	45;"	d
 DLLINTERFACE	SDL_Primitives.h	31;"	d
 DLLINTERFACE	attic/SDL_Primitives.h	31;"	d
 DOUBLECLICK_TIMEOUT	SDLTk.c	40;"	d	file:
@@ -205,6 +211,7 @@ DoubleClickTimer	SDLTk.c	/^static SDL_TimerID     DoubleClickTimer;$/;"	v	file:
 DoubleClickTimer	attic/SDLTk.c	/^static SDL_TimerID     DoubleClickTimer;$/;"	v	file:
 DoubleClickTimerExpired	SDLTk.c	/^Uint32  DoubleClickTimerExpired(Uint32  interval,void *params)$/;"	f
 DoubleClickTimerExpired	attic/SDLTk.c	/^Uint32  DoubleClickTimerExpired(Uint32  interval,void *params)$/;"	f
+ENABLE	SDL_Widget.h	44;"	d
 E_TableMode	SDL_Table.h	/^typedef enum E_TableMode$/;"	g
 E_TableMode	SDL_Table.h	/^}E_TableMode;$/;"	t	typeref:enum:E_TableMode
 E_TableMode	attic/SDL_Table.h	/^typedef enum E_TableMode$/;"	g
@@ -705,10 +712,12 @@ SDL_ButtonClose	SDL_Button.c	/^void SDL_ButtonClose(SDL_Widget *widget)$/;"	f
 SDL_ButtonClose	attic/SDL_Button.c	/^void SDL_ButtonClose(SDL_Widget *widget)$/;"	f
 SDL_ButtonDraw	SDL_Button.c	/^void SDL_ButtonDraw(SDL_Widget *widget,SDL_Surface *surface,SDL_Rect *Area)$/;"	f
 SDL_ButtonDraw	attic/SDL_Button.c	/^void SDL_ButtonDraw(SDL_Widget *widget,SDL_Surface *surface,SDL_Rect *Area)$/;"	f
+SDL_ButtonGetText	SDL_Button.c	/^SDL_String *SDL_ButtonGetText( SDL_Widget *object)$/;"	f
 SDL_ButtonGetType	SDL_Button.c	/^SDL_WidgetType SDL_ButtonGetType()$/;"	f
 SDL_ButtonGetType	attic/SDL_Button.c	/^SDL_WidgetType SDL_ButtonGetType()$/;"	f
 SDL_ButtonNew	SDL_Button.c	/^SDL_Widget* SDL_ButtonNew()$/;"	f
 SDL_ButtonNew	attic/SDL_Button.c	/^SDL_Widget* SDL_ButtonNew()$/;"	f
+SDL_ButtonSetColor	SDL_Button.c	/^int SDL_ButtonSetColor(SDL_Widget *widget,int which,int color)$/;"	f
 SDL_ButtonSetFont	SDL_Button.c	/^int SDL_ButtonSetFont(SDL_Widget *widget,SDL_Font *Font)$/;"	f
 SDL_ButtonSetFont	attic/SDL_Button.c	/^int SDL_ButtonSetFont(SDL_Widget *widget,SDL_Font *Font)$/;"	f
 SDL_ButtonSetFontHeight	SDL_Button.c	/^int SDL_ButtonSetFontHeight(SDL_Widget *widget,int height)$/;"	f
@@ -717,9 +726,11 @@ SDL_ButtonSetImage	SDL_Button.c	/^int SDL_ButtonSetImage(SDL_Widget *widget,SDL_
 SDL_ButtonSetImage	attic/SDL_Button.c	/^int SDL_ButtonSetImage(SDL_Widget *widget,SDL_eButtonState state,SDL_Image *image)$/;"	f
 SDL_ButtonSetLabel	SDL_Button.c	/^int SDL_ButtonSetLabel(SDL_Widget *widget,char *title)$/;"	f
 SDL_ButtonSetLabel	attic/SDL_Button.c	/^int SDL_ButtonSetLabel(SDL_Widget *widget,char *title)$/;"	f
+SDL_ButtonSetSignalSwitch	SDL_Button.c	/^int SDL_ButtonSetSignalSwitch( SDL_Widget *widget, int which, int able)$/;"	f
 SDL_ButtonSetTransition	SDL_Button.c	/^int SDL_ButtonSetTransition(SDL_Widget *widget,SDL_eButtonState state,int how)$/;"	f
 SDL_ButtonSetTransition	attic/SDL_Button.c	/^int SDL_ButtonSetTransition(SDL_Widget *widget,SDL_eButtonState state,int how)$/;"	f
 SDL_ButtonSignalFrameUpdate	SDL_Button.c	/^static void SDL_ButtonSignalFrameUpdate(SDL_Object *object,void *signaldata,void *userdata)$/;"	f	file:
+SDL_ButtonSignalKeyDown	SDL_Button.c	/^static void SDL_ButtonSignalKeyDown(SDL_Object *object,void *signaldata,void *userdata)$/;"	f	file:
 SDL_ButtonSignalMouseButtonDown	SDL_Button.c	/^static void SDL_ButtonSignalMouseButtonDown(SDL_Object *object,void *signaldata,void *userdata)$/;"	f	file:
 SDL_ButtonSignalMouseButtonDown	attic/SDL_Button.c	/^static void SDL_ButtonSignalMouseButtonDown(SDL_Object *object,void *signaldata,void *userdata)$/;"	f	file:
 SDL_ButtonSignalMouseButtonUp	SDL_Button.c	/^static void SDL_ButtonSignalMouseButtonUp(SDL_Object *object,void *signaldata,void *userdata)$/;"	f	file:
@@ -927,6 +938,7 @@ SDL_LabelSetFontHeight	SDL_Label.c	/^int SDL_LabelSetFontHeight(SDL_Widget *widg
 SDL_LabelSetFontHeight	attic/SDL_Label.c	/^int SDL_LabelSetFontHeight(SDL_Widget *widget,int height)$/;"	f
 SDL_LabelSetText	SDL_Label.c	/^int SDL_LabelSetText(SDL_Widget *widget,char *text)$/;"	f
 SDL_LabelSetText	attic/SDL_Label.c	/^int SDL_LabelSetText(SDL_Widget *widget,char *text)$/;"	f
+SDL_LabelSignalKeyDown	SDL_Label.c	/^static void SDL_LabelSignalKeyDown( SDL_Object *object, void *signaldata, void *userdata)$/;"	f	file:
 SDL_LinkedList	SDL_LList.h	/^typedef struct SDL_LinkedList$/;"	s
 SDL_LinkedList	SDL_LList.h	/^}SDL_LinkedList;$/;"	t	typeref:struct:SDL_LinkedList
 SDL_LinkedList	attic/SDL_LList.h	/^typedef struct SDL_LinkedList$/;"	s
@@ -1171,6 +1183,7 @@ SDL_Scrollbar	SDL_Scrollbar.h	/^typedef struct SDL_Scrollbar$/;"	s
 SDL_Scrollbar	SDL_Scrollbar.h	/^}SDL_Scrollbar;$/;"	t	typeref:struct:SDL_Scrollbar
 SDL_Scrollbar	attic/SDL_Scrollbar.h	/^typedef struct SDL_Scrollbar$/;"	s
 SDL_Scrollbar	attic/SDL_Scrollbar.h	/^}SDL_Scrollbar;$/;"	t	typeref:struct:SDL_Scrollbar
+SDL_ScrollbarClose	SDL_Scrollbar.c	/^void SDL_ScrollbarClose(SDL_Widget *widget)$/;"	f
 SDL_ScrollbarDraw	SDL_Scrollbar.c	/^void SDL_ScrollbarDraw(SDL_Widget *widget,SDL_Surface *surface,SDL_Rect *Area)$/;"	f
 SDL_ScrollbarDraw	attic/SDL_Scrollbar.c	/^void SDL_ScrollbarDraw(SDL_Widget *widget,SDL_Surface *surface,SDL_Rect *Area)$/;"	f
 SDL_ScrollbarGetCurrentValue	SDL_Scrollbar.c	/^int SDL_ScrollbarGetCurrentValue(SDL_Widget *widget)$/;"	f
@@ -2176,16 +2189,16 @@ VolumeBar_DrawStripe	SDL_VolumeBar.c	/^void VolumeBar_DrawStripe(SDL_Surface *de
 VolumeBar_DrawStripe	attic/SDL_VolumeBar.c	/^void VolumeBar_DrawStripe(SDL_Surface *dest,SDL_VolumeBar *VolumeBar,Sint16 line,Uint32 color)$/;"	f
 WHITE	SDL_Widget.h	38;"	d
 WHITE	attic/SDL_Widget.h	37;"	d
-WIDGET_FOCUSABLE	SDL_Widget.h	70;"	d
+WIDGET_FOCUSABLE	SDL_Widget.h	71;"	d
 WIDGET_FOCUSABLE	attic/SDL_Widget.h	69;"	d
-WIDGET_FRAME	SDL_Widget.h	75;"	d
-WIDGET_NOADD	SDL_Widget.h	73;"	d
+WIDGET_FRAME	SDL_Widget.h	76;"	d
+WIDGET_NOADD	SDL_Widget.h	74;"	d
 WIDGET_NOADD	attic/SDL_Widget.h	72;"	d
-WIDGET_REALIZED	SDL_Widget.h	71;"	d
+WIDGET_REALIZED	SDL_Widget.h	72;"	d
 WIDGET_REALIZED	attic/SDL_Widget.h	70;"	d
-WIDGET_SURFACE_AVAILABLE	SDL_Widget.h	74;"	d
+WIDGET_SURFACE_AVAILABLE	SDL_Widget.h	75;"	d
 WIDGET_SURFACE_AVAILABLE	attic/SDL_Widget.h	73;"	d
-WIDGET_VISIBLE	SDL_Widget.h	72;"	d
+WIDGET_VISIBLE	SDL_Widget.h	73;"	d
 WIDGET_VISIBLE	attic/SDL_Widget.h	71;"	d
 Widget	SDL_Button.h	/^    SDL_Widget       Widget;$/;"	m	struct:SDL_Button
 Widget	SDL_Edit.h	/^    SDL_Widget  Widget;$/;"	m	struct:SDL_Edit
@@ -2626,6 +2639,7 @@ firstchar	SDL_FontFNT.h	/^    int firstchar;                      $/;"	m	struct:
 firstchar	SDL_FontTTF.h	/^    int firstchar;                      $/;"	m	struct:TTF_Font
 firstchar	attic/SDL_FontFNT.h	/^    int firstchar;                      $/;"	m	struct:FNT_Font
 firstchar	attic/SDL_FontTTF.h	/^    int firstchar;                      $/;"	m	struct:TTF_Font
+flag	SDL_Button.h	/^    int flag;$/;"	m	struct:SDL_Button
 flags	SDL_Widget.h	/^    Uint32        flags;$/;"	m	struct:SDL_Widget
 flags	attic/SDL_Widget.h	/^    Uint32        flags;$/;"	m	struct:SDL_Widget
 font	SDL_FontFNT.h	/^    unsigned char *font;$/;"	m	struct:FNT_Font

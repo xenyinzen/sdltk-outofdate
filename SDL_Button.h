@@ -28,6 +28,12 @@
 #include "SDL_Images.h"
 #include "SDL_Widget.h"
 
+#define BUTTON_LEFT_SWITCH	0
+#define BUTTON_MIDDLE_SWITCH	1
+#define BUTTON_RIGHT_SWITCH	2
+#define BUTTON_KEYDOWN_SWITCH	3
+#define BUTTON_KEYUP_SWITCH	4
+
 
 typedef enum SDL_eButtonState
 {
@@ -46,6 +52,7 @@ typedef struct SDL_Button
     SDL_Font   *Font;
 
     int height;
+    int flag;
 }SDL_Button;
 
 typedef struct SDL_ButtonStyleState
@@ -72,6 +79,8 @@ int SDL_ButtonSetLabel(SDL_Widget *widget,char *title);
 int SDL_ButtonSetImage(SDL_Widget *widget,SDL_eButtonState state,SDL_Image *image);
 int SDL_ButtonSetTransition(SDL_Widget *widget,SDL_eButtonState state,int how);
 
+int SDL_ButtonSetSignalSwitch( SDL_Widget *widget, int which, int able);
+int SDL_ButtonSetColor(SDL_Widget *widget, int which, int color);
 int SDL_ButtonSetFont(SDL_Widget *widget,SDL_Font *Font);
 int SDL_ButtonSetFontHeight(SDL_Widget *widget,int height);
 #endif /* __BUTTON_H__ */

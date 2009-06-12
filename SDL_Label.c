@@ -25,7 +25,7 @@
 #include "SDLTk.h"
 #include "SDL_Label.h"
 
-
+static void SDL_LabelSignalKeyDown( SDL_Object *object, void *signaldata, void *userdata);
 static void Label_CalculatePattern(SDL_Label *Label,SDL_Rect *Rect);
 static void SDL_LabelDraw(SDL_Widget *widget,SDL_Surface *surface,SDL_Rect *Area);
 
@@ -60,7 +60,8 @@ SDL_Widget* SDL_LabelNew()
     Widget->Rect.w    = 0;
     Widget->Rect.h    = 0;
     Widget->flags     = 0;
-
+    
+    
     Label->Caption = NULL;
     Label->Font    = &DefaultFont;
 
@@ -116,13 +117,18 @@ int SDL_LabelSetColor(SDL_Widget *widget,int which,Uint32 color)
     SDL_Label *Label=(SDL_Label*)widget;
 
     if(Label == NULL)
+    {
+        printf( "label is null\n");
         return 0;
-
+    }
+    printf( "which %d, color %d\n", which, color);
     switch(which)
     {
     case FOREGROUND:
+        Label->fgcolor = color;
         break;
     case BACKGROUND:
+        Label->bgcolor = color;
         break;
     default:
         break;
@@ -277,4 +283,9 @@ SDL_String *SDL_LabelGetText(SDL_Widget *widget)
     SDL_Label *Label=(SDL_Label*)widget;
     
     return Label->Caption;
+}
+
+static void SDL_LabelSignalKeyDown( SDL_Object *object, void *signaldata, void *userdata)
+{
+        
 }

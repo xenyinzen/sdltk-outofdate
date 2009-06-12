@@ -33,6 +33,10 @@ int  SDL_ButtonSizeRequest(SDL_Widget *widget,SDL_Rect *size);
 static void SDL_ButtonSignalMouseButtonDown(SDL_Object *object,void *signaldata,void *userdata);
 static void SDL_ButtonSignalMouseButtonUp(SDL_Object *object,void *signaldata,void *userdata);
 static void SDL_ButtonSignalMouseMotion(SDL_Object *object,void *signaldata,void *userdata);
+static void SDL_ButtonSignalKeyDown(SDL_Object *object,void *signaldata,void *userdata);
+#if 0
+static void SDL_ButtonSignalKeyUp(SDL_Object *object,void *signaldata,void *userdata);
+#endif
 static void SDL_ButtonSignalRealize(SDL_Object *object,void *signaldata,void *userdata);
 static void SDL_ButtonSignalShow(SDL_Object *object,void *signaldata,void *userdata);
 
@@ -65,7 +69,7 @@ SDL_WidgetType SDL_ButtonGetType()
 }
 
 SDL_Widget* SDL_ButtonNew()
-{    
+{   
     SDL_Button *button;
     SDL_Widget *widget;
     SDL_Object *object;
@@ -83,6 +87,10 @@ SDL_Widget* SDL_ButtonNew()
     SDL_SignalConnect(widget,"mousebuttondown",SDL_ButtonSignalMouseButtonDown,widget);
     SDL_SignalConnect(widget,"mousebuttonup",  SDL_ButtonSignalMouseButtonUp,  widget);
     SDL_SignalConnect(widget,"mousemotion",    SDL_ButtonSignalMouseMotion,    widget);
+    SDL_SignalConnect(widget,"keydown",        SDL_ButtonSignalKeyDown,        widget);
+    #if 0
+    SDL_SignalConnect(widget,"keyup",          SDL_ButtonSignalKeyUp,          widget);
+    #endif 
     SDL_SignalConnect(widget,"realize",        SDL_ButtonSignalRealize,        widget);
     SDL_SignalConnect(widget,"show",           SDL_ButtonSignalShow,           widget);
 
@@ -91,7 +99,8 @@ SDL_Widget* SDL_ButtonNew()
 
     button->Font         = &DefaultFont;
     button->height       = 10;
-   
+    button->flag	 = 1;
+       
     return (SDL_Widget*)button;
 }
 
@@ -111,17 +120,71 @@ static void SDL_ButtonSignalMouseButtonDown(SDL_Object *object,void *signaldata,
     SDL_Button *Button = (SDL_Button*) object;
     SDL_Event  *event  = (SDL_Event *) signaldata;
     SDL_Widget *widget = (SDL_Widget*) object;
-
-    if(SDL_WidgetIsInside(widget,event->motion.x,event->motion.y) &&
-       event->button.button == 1)
+    
+    if(SDL_WidgetIsInside(widget,event->motion.x,event->motion.y))
     {
-        SDL_StyleTransition(widget,Button->State,SDL_BUTTON_STATE_DOWN);
-        Button->State = SDL_BUTTON_STATE_DOWN;
-        SDL_SignalEmit(widget,"clicked",NULL);
+            if(event->button.button == SDL_BUTTON_LEFT &&( Button->flag&(0x1<<BUTTON_LEFT_SWITCH)))
+            {
+                    SDL_StyleTransition(widget,Button->State,SDL_BUTTON_STATE_DOWN);
+                    Button->State = SDL_BUTTON_STATE_DOWN;
+                    SDL_SignalEmit(widget,"clicked",NULL);
+             }
+             else if(event->button.button == SDL_BUTTON_RIGHT && (Button->flag&(0x1<<BUTTON_RIGHT_SWITCH)))
+             {
+                     SDL_StyleTransition(widget,Button->State,SDL_BUTTON_STATE_DOWN);
+                     Button->State = SDL_BUTTON_STATE_DOWN;
+                     SDL_SignalEmit(widget,"right-clicked",NULL);
+             }
+             else
+                     Button->State = SDL_BUTTON_STATE_UP;
     }
     else
-        Button->State = SDL_BUTTON_STATE_UP;        
+            Button->State = SDL_BUTTON_STATE_UP;
+
 }
+
+static void SDL_ButtonSignalKeyDown(SDL_Object *object,void *signaldata,void *userdata)
+{
+    SDL_Button *Button	= (SDL_Button*) object;
+    SDL_Event *event	= (SDL_Event *) signaldata;
+    SDL_Widget *widget	= (SDL_Widget*) object;
+    
+/*    printf( "keydown: %d\n", Button->flag);
+    
+    if( Button->flag &(0x1<<BUTTON_KEYDOWN_SWITCH))
+    {
+            printf(" pressed\n");
+            SDL_StyleTransition(widget,Button->State,SDL_BUTTON_STATE_DOWN);
+            Button->State = SDL_BUTTON_STATE_DOWN;
+            SDL_SignalEmit(widget,"clicked", signaldata);
+                    
+    }
+    else
+            Button->State = SDL_BUTTON_STATE_UP;    
+*/    
+    
+}
+
+#if 0
+static void SDL_ButtonSignalKeyUp(SDL_Object *object,void *signaldata,void *userdata)
+{
+    SDL_Button *Button	= (SDL_Button*) object;
+    SDL_Event *event	= (SDL_Event *) signaldata;
+    SDL_Widget *widget	= (SDL_Widget*) object;
+
+    if( Button->flag &(0x1<<BUTTON_KEYUP_SWITCH))
+    {
+            SDL_StyleTransition(widget,Button->State,SDL_BUTTON_STATE_UP);
+            Button->State = SDL_BUTTON_STATE_UP;
+            SDL_SignalEmit(widget,"keyup",NULL);
+                    
+    }
+    else
+            Button->State = SDL_BUTTON_STATE_UP;    
+    
+    
+}
+#endif
 
 static void SDL_ButtonSignalMouseButtonUp(SDL_Object *object,void *signaldata,void *userdata)
 {
@@ -204,6 +267,21 @@ int SDL_ButtonSetLabel(SDL_Widget *widget,char *title)
     return 1;
 }
 
+int SDL_ButtonSetColor(SDL_Widget *widget,int which,int color)
+{
+        SDL_Button *Button = (SDL_Button*)widget;
+        
+        if( Button->Label == NULL)
+        {
+                printf( "Button->Label is null\n");
+                return 0;
+        }
+ 
+        SDL_LabelSetColor( Button->Label, which, color);
+        
+        return 1;
+}
+
 int SDL_ButtonSetImage(SDL_Widget *widget,SDL_eButtonState state,SDL_Image *image)
 {
     if(image == NULL)
@@ -246,7 +324,19 @@ static void SDL_ButtonSignalShow(SDL_Object *object,void *signaldata,void *userd
 
 }
 
-
+SDL_String *SDL_ButtonGetText( SDL_Widget *object)
+{
+        SDL_Button *button = (SDL_Button*)object;
+        if( !button->Label)
+        {	
+                printf( "button -> label is null.\n");
+                return 0;
+        }
+        
+        return SDL_LabelGetText( button->Label);
+        
+        
+}
 int SDL_ButtonSizeRequest(SDL_Widget *widget,SDL_Rect *size)
 {
     size->x = widget->Rect.x;
@@ -320,6 +410,20 @@ int SDL_ButtonSetFontHeight(SDL_Widget *widget,int height)
         return 1;
     }
     return 0;
+}
+
+int SDL_ButtonSetSignalSwitch( SDL_Widget *widget, int which, int able)
+{
+        SDL_Button *button=(SDL_Button*)widget;
+        int flag = 1;         
+        flag = flag << which;
+                
+        if( able == ENABLE)
+                button->flag |= flag;
+        else
+                button->flag &= ~flag;
+        
+        return 0;
 }
 
 

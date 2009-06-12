@@ -48,8 +48,9 @@ int SDL_WidgetInit()
     SDL_SignalNew("activate");
 
     /* Button */
-    SDL_SignalNew("clicked"); 
-
+    SDL_SignalNew("clicked");
+    SDL_SignalNew("right-clicked");
+    
     /* Table */
     SDL_SignalNew("select-row");
     SDL_SignalNew("edited");

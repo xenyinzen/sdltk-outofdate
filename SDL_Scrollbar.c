@@ -243,6 +243,19 @@ static void SDL_ScrollbarSignalMouseButtonDown(SDL_Object *object,void *signalda
             }
             
         }
+        else if( SDL_WidgetIsInside( widget, Event->motion.x, ymotion))
+        {
+                if( Event->button.button == 4)
+                {
+                        /* up  */
+                        SDL_ScrollbarStep(Scrollbar,UP,NORMAL_STEP);
+                }
+                else if( Event->button.button == 5)
+                {
+                        /*down */
+                        SDL_ScrollbarStep(Scrollbar,DOWN,NORMAL_STEP);
+                }                 
+        }
 
     }
     else
@@ -738,4 +751,10 @@ void  SDL_ScrollbarStyleHitTest(SDL_Widget *widget,SDL_Event *event,SDL_StyleIma
             SDL_ScrollbarStep(Scrollbar,LEFT,NORMAL_STEP);
         }
     }
+}
+
+void SDL_ScrollbarClose(SDL_Widget *widget)
+{
+        SDL_Scrollbar *Scroll = (SDL_Scrollbar *)widget;
+        free( Scroll);
 }

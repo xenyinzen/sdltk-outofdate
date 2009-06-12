@@ -1,0 +1,91 @@
+
+
+Import('env')
+env.Append(CCFLAGS = '-Isrc/ui/sdltk/')
+env.Append(CCFLAGS = '-I/mnt/img/include/SDL')
+env.Append(CCFLAGS = '-Isrc')
+env.Append(CCFLAGS = '-I/usr/include/libxml2')
+env.Append(CCFLAGS = '-I/usr/include/SDL')
+env.Append(CCFLAGS = '-I/mnt/img/include/libxml2')
+env.Append(CCFLAGS = '-I/mnt/img/include/')
+env.Append(CCFLAGS = '-I/usr/include/freetype2')
+env.Append(CCFLAGS = '-Wall')
+env.Append(CCFLAGS = '-g')
+env.Append(CCFLAGS = '-ansi')
+env.Append(CCFLAGS = '-pg')
+env.Append(LINKFLAGS = '-pg')
+
+sdltk = env.SharedLibrary('sdltk',['SDL_Button.c',
+                           'SDL_DefFont.c',
+                           'SDL_Edit.c',
+                           'SDL_Font.c',
+                           'SDL_FontBDF.c',
+                           'SDL_FontFNT.c',
+                           'SDL_FontTTF.c',
+                           'SDL_Frame.c',
+                           'SDL_GLPrimitives.c',
+                           'SDL_Images.c',
+                           'SDL_ImageGIF.c',
+                           'SDL_Knob.c',
+                           'SDL_Label.c',
+                           'SDL_ListModel.c',
+                           'SDL_LList.c',
+                           'SDL_Menu.c',
+                           'SDL_MenuItem.c',
+                           'SDL_Model.c',
+                           'SDL_ModelType.c',
+                           'SDL_MultiLineEdit.c',
+                           'SDL_Panel.c',
+                           'SDL_Paragraph.c',
+                           'SDL_Primitives.c',
+                           'SDL_ProgressBar.c',
+                           'SDL_RadioButton.c',
+                           'SDL_ScrollArea.c',
+                           'SDL_Scrollbar.c',
+                           'SDL_SelectionModel.c',
+                           'SDL_Signal.c',
+                           'SDL_Skin.c',
+                           'SDL_SkinStyle.c',
+                           'SDL_SkinWidget.c',
+                           'SDL_SkinWindow.c',
+                           'SDL_Slider.c',
+                           'SDL_String.c',
+                           'SDL_Style.c',
+                           'SDL_StyleDefault.c',
+                           'SDL_StyleXP.c',
+                           'SDL_Tab.c',
+                           'SDL_Table.c',
+                           'SDL_TableCell.c',
+                           'SDL_TableRow.c',
+                           'SDL_ToggleButton.c',
+                           'SDL_Tooltip.c',
+                           'SDL_Tree.c',                                
+                           'SDL_TreeModel.c',                                
+                           'SDL_ViewItem.c',
+                           'SDL_VolumeBar.c',
+                           'SDL_Widget.c',
+                           'SDL_WidgetType.c',
+                           'SDL_WidTool.c',
+                           'SDL_Window.c',
+                           'SDL_WindowManager.c',
+                           'SDL_WindowPrimitives.c',
+                           'SDLTk.c',
+                           'SDLTk_libc.c'])
+               
+
+
+
+Export('sdltk')
+
+
+
+
+
+
+
+
+
+
+
+
+

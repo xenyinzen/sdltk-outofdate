@@ -94,6 +94,7 @@ enum
 #define SDLTK_WINDOW_REDRAW     7
 #define SDLTK_IMAGE_EVENT       8
 
+
 #endif /* __SDLTK_H__ */
 
 

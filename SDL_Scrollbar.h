@@ -123,4 +123,6 @@ void SDL_ScrollbarSetCallback(SDL_Widget *widget,void *callback,SDL_Widget *retu
 
 int SDL_ScrollbarSetImage(SDL_Widget *widget,int which,SDL_Image *image);
 
+void SDL_ScrollbarClose(SDL_Widget *widget);
+
 #endif /* __SDL_SCROLLBAR_H__ */

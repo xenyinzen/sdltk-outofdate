@@ -41,7 +41,8 @@ struct SDL_Window;
 #define FOREGROUND  0x200
 #define BACKGROUND  0x201
 
-
+#define ENABLE	0x1
+#define DISABLE	0x0
 
 typedef enum E_Widget_Properties
 {
